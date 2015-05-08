@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peril: SNP Frequency</title>
+    <meta name="description" content="Peril: SNP Frequency - Max Nanis" />
+    <meta name="keywords" content="peril, snp frequency, the scripps research institute, max nanis" />
+    <meta name="author" content="Max Nanis" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script src="js/modernizr.custom.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <!--
+      <header class="clearfix">
+        <span>Blueprint</span>
+        <h1>Fixed Background Scrolling Layout</h1>
+        <nav>
+          <a href="http://tympanus.net/Blueprints/BackgroundSlideshow/" class="icon-arrow-left" data-info="previous Blueprint">Previous Blueprint</a>
+          <a href="http://tympanus.net/codrops/?p=14921" class="icon-drop" data-info="back to the Codrops article">back to the Codrops article</a>
+        </nav>
+      </header>
+      -->
+
+      <div id="cbp-fbscroller" class="cbp-fbscroller">
+        <nav>
+          <a href="#chr1" class="cbp-fbcurrent">Chromosome 1</a>
+          <a href="#chr2">Chromosome 2</a>
+          <a href="#chr3">Chromosome 3</a>
+          <a href="#chr4">Chromosome 4</a>
+          <a href="#chr5">Chromosome 5</a>
+          <a href="#chr6">Chromosome 6</a>
+          <a href="#chr7">Chromosome 7</a>
+          <a href="#chr8">Chromosome 8</a>
+          <a href="#chr9">Chromosome 9</a>
+          <a href="#chr10">Chromosome 10</a>
+          <a href="#chr11">Chromosome 11</a>
+          <a href="#chr12">Chromosome 12</a>
+          <a href="#chr13">Chromosome 13</a>
+          <a href="#chr14">Chromosome 14</a>
+          <a href="#chr15">Chromosome 15</a>
+          <a href="#chr16">Chromosome 16</a>
+          <a href="#chr17">Chromosome 17</a>
+          <a href="#chr18">Chromosome 18</a>
+          <a href="#chr19">Chromosome 19</a>
+          <a href="#chr20">Chromosome 20</a>
+          <a href="#chr21">Chromosome 21</a>
+          <a href="#chr22">Chromosome 22</a>
+          <a href="#chr23">Chromosome 23</a>
+        </nav>
+        <section id="chr1" class='container-odd'></section>
+        <section id="chr2" class='container-even'></section>
+        <section id="chr3" class='container-odd'></section>
+        <section id="chr4" class='container-even'></section>
+        <section id="chr5" class='container-odd'></section>
+        <section id="chr6" class='container-even'></section>
+        <section id="chr7" class='container-odd'></section>
+        <section id="chr8" class='container-even'></section>
+        <section id="chr9" class='container-odd'></section>
+        <section id="chr10" class='container-even'></section>
+        <section id="chr11" class='container-odd'></section>
+        <section id="chr12" class='container-even'></section>
+        <section id="chr13" class='container-odd'></section>
+        <section id="chr14" class='container-even'></section>
+        <section id="chr15" class='container-odd'></section>
+        <section id="chr16" class='container-even'></section>
+        <section id="chr17" class='container-odd'></section>
+        <section id="chr18" class='container-even'></section>
+        <section id="chr19" class='container-odd'></section>
+        <section id="chr20" class='container-even'></section>
+        <section id="chr21" class='container-odd'></section>
+        <section id="chr22" class='container-even'></section>
+        <section id="chr23" class='container-odd'></section>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <!-- jquery.easing by http://gsgd.co.uk/ : http://gsgd.co.uk/sandbox/jquery/easing/ -->
+    <script src="js/jquery.easing.min.js"></script>
+    <!-- waypoints jQuery plugin by http://imakewebthings.com/ : http://imakewebthings.com/jquery-waypoints/ -->
+    <script src="js/waypoints.min.js"></script>
+    <!-- jquery-smartresize by @louis_remi : https://github.com/louisremi/jquery-smartresize -->
+    <script src="js/jquery.debouncedresize.js"></script>
+    <script src="js/cbpFixedScrollLayout.js"></script>
+    <script>
+      $(function() {
+          cbpFixedScrollLayout.init();
+
+          $(window).on('drawChr', function(self, chr_num) {
+            console.log(chr_num);
+          });
+      });
+    </script>
+  </body>
+</html>
