@@ -8,89 +8,109 @@
     <meta name="description" content="Peril: SNP Frequency - Max Nanis" />
     <meta name="keywords" content="peril, snp frequency, the scripps research institute, max nanis" />
     <meta name="author" content="Max Nanis" />
-    <link rel="shortcut icon" href="../favicon.ico">
+
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <script src="js/modernizr.custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
   </head>
   <body>
     <div class="container">
-      <!--
-      <header class="clearfix">
-        <span>Blueprint</span>
-        <h1>Fixed Background Scrolling Layout</h1>
-        <nav>
-          <a href="http://tympanus.net/Blueprints/BackgroundSlideshow/" class="icon-arrow-left" data-info="previous Blueprint">Previous Blueprint</a>
-          <a href="http://tympanus.net/codrops/?p=14921" class="icon-drop" data-info="back to the Codrops article">back to the Codrops article</a>
-        </nav>
-      </header>
-      -->
 
-      <div id="cbp-fbscroller" class="cbp-fbscroller">
+      <div id="scroller" class="scroller">
         <nav>
-          <a href="#chr1" class="cbp-fbcurrent">Chromosome 1</a>
-          <a href="#chr2">Chromosome 2</a>
-          <a href="#chr3">Chromosome 3</a>
-          <a href="#chr4">Chromosome 4</a>
-          <a href="#chr5">Chromosome 5</a>
-          <a href="#chr6">Chromosome 6</a>
-          <a href="#chr7">Chromosome 7</a>
-          <a href="#chr8">Chromosome 8</a>
-          <a href="#chr9">Chromosome 9</a>
-          <a href="#chr10">Chromosome 10</a>
-          <a href="#chr11">Chromosome 11</a>
-          <a href="#chr12">Chromosome 12</a>
-          <a href="#chr13">Chromosome 13</a>
-          <a href="#chr14">Chromosome 14</a>
-          <a href="#chr15">Chromosome 15</a>
-          <a href="#chr16">Chromosome 16</a>
-          <a href="#chr17">Chromosome 17</a>
-          <a href="#chr18">Chromosome 18</a>
-          <a href="#chr19">Chromosome 19</a>
-          <a href="#chr20">Chromosome 20</a>
-          <a href="#chr21">Chromosome 21</a>
-          <a href="#chr22">Chromosome 22</a>
-          <a href="#chr23">Chromosome 23</a>
+          <a href="#home" style='display:none;'></a>
+          <a href="#chr1"></a>
+          <a href="#chr2"></a>
+          <a href="#chr3"></a>
+          <a href="#chr4"></a>
+          <a href="#chr5"></a>
+          <a href="#chr6"></a>
+          <a href="#chr7"></a>
+          <a href="#chr8"></a>
+          <a href="#chr9"></a>
+          <a href="#chr10"></a>
+          <a href="#chr11"></a>
+          <a href="#chr12"></a>
+          <a href="#chr13"></a>
+          <a href="#chr14"></a>
+          <a href="#chr15"></a>
+          <a href="#chr16"></a>
+          <a href="#chr17"></a>
+          <a href="#chr18"></a>
+          <a href="#chr19"></a>
+          <a href="#chr20"></a>
+          <a href="#chr21"></a>
+          <a href="#chr22"></a>
+          <a href="#chr23"></a>
+          <a href="#about" style='display:none;'></a>
         </nav>
-        <section id="chr1" class='container-odd'></section>
-        <section id="chr2" class='container-even'></section>
-        <section id="chr3" class='container-odd'></section>
-        <section id="chr4" class='container-even'></section>
-        <section id="chr5" class='container-odd'></section>
-        <section id="chr6" class='container-even'></section>
-        <section id="chr7" class='container-odd'></section>
-        <section id="chr8" class='container-even'></section>
-        <section id="chr9" class='container-odd'></section>
-        <section id="chr10" class='container-even'></section>
-        <section id="chr11" class='container-odd'></section>
-        <section id="chr12" class='container-even'></section>
-        <section id="chr13" class='container-odd'></section>
-        <section id="chr14" class='container-even'></section>
-        <section id="chr15" class='container-odd'></section>
-        <section id="chr16" class='container-even'></section>
-        <section id="chr17" class='container-odd'></section>
-        <section id="chr18" class='container-even'></section>
-        <section id="chr19" class='container-odd'></section>
-        <section id="chr20" class='container-even'></section>
-        <section id="chr21" class='container-odd'></section>
-        <section id="chr22" class='container-even'></section>
-        <section id="chr23" class='container-odd'></section>
+        <section id="home">
+          <h1>Peril</h1>
+          <img src='#' style='display:none;' />
+          <h3><a href='#about'>About</a></h3>
+        </section>
+        <section id="chr1" class='odd'><h2><a href='#chr1'>Chromosome 1</a></h2></section>
+        <section id="chr2" class='even'><h2><a href='#chr2'>Chromosome 2</a></h2></section>
+        <section id="chr3" class='odd'><h2><a href='#chr3'>Chromosome 3</a></h2></section>
+        <section id="chr4" class='even'><h2><a href='#chr4'>Chromosome 4</a></h2></section>
+        <section id="chr5" class='odd'><h2><a href='#chr5'>Chromosome 5</a></h2></section>
+        <section id="chr6" class='even'><h2><a href='#chr6'>Chromosome 6</a></h2></section>
+        <section id="chr7" class='odd'><h2><a href='#chr7'>Chromosome 7</a></h2></section>
+        <section id="chr8" class='even'><h2><a href='#chr8'>Chromosome 8</a></h2></section>
+        <section id="chr9" class='odd'><h2><a href='#chr9'>Chromosome 9</a></h2></section>
+        <section id="chr10" class='even'><h2><a href='#chr10'>Chromosome 10</a></h2></section>
+        <section id="chr11" class='odd'><h2><a href='#chr11'>Chromosome 11</a></h2></section>
+        <section id="chr12" class='even'><h2><a href='#chr12'>Chromosome 12</a></h2></section>
+        <section id="chr13" class='odd'><h2><a href='#chr13'>Chromosome 13</a></h2></section>
+        <section id="chr14" class='even'><h2><a href='#chr14'>Chromosome 14</a></h2></section>
+        <section id="chr15" class='odd'><h2><a href='#chr15'>Chromosome 15</a></h2></section>
+        <section id="chr16" class='even'><h2><a href='#chr16'>Chromosome 16</a></h2></section>
+        <section id="chr17" class='odd'><h2><a href='#chr17'>Chromosome 17</a></h2></section>
+        <section id="chr18" class='even'><h2><a href='#chr18'>Chromosome 18</a></h2></section>
+        <section id="chr19" class='odd'><h2><a href='#chr19'>Chromosome 19</a></h2></section>
+        <section id="chr20" class='even'><h2><a href='#chr20'>Chromosome 20</a></h2></section>
+        <section id="chr21" class='odd'><h2><a href='#chr21'>Chromosome 21</a></h2></section>
+        <section id="chr22" class='even'><h2><a href='#chr22'>Chromosome 22</a></h2></section>
+        <section id="chr25" class='odd'><h2><a href='#chr23'>Chromosome 23</a></h2></section>
+        <section id="about" class='even'>
+          <p>Peril was developed at General Research Lab by <a href='https://twitter.com/x0xMaximus' target='_blank'>Max Nanis</a> & <a href='http://sulab.org/the-team/louis-gioia/' target='_blank'>Louis Gioia</a>.</p>
+          <p><a href='https://github.com/GRL/peril' target='_blank'>Peril is open source.</a></p>
+        </section>
       </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <!-- jquery.easing by http://gsgd.co.uk/ : http://gsgd.co.uk/sandbox/jquery/easing/ -->
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script src="//underscorejs.org/underscore-min.js"></script>
+    <script src="js/jquery.animate-colors-min.js"></script>
+    <script src="js/peril.js"></script>
+
     <script src="js/jquery.easing.min.js"></script>
-    <!-- waypoints jQuery plugin by http://imakewebthings.com/ : http://imakewebthings.com/jquery-waypoints/ -->
     <script src="js/waypoints.min.js"></script>
-    <!-- jquery-smartresize by @louis_remi : https://github.com/louisremi/jquery-smartresize -->
     <script src="js/jquery.debouncedresize.js"></script>
     <script src="js/cbpFixedScrollLayout.js"></script>
     <script>
       $(function() {
+          var current_chr_num;
           cbpFixedScrollLayout.init();
 
-          $(window).on('drawChr', function(self, chr_num) {
-            console.log(chr_num);
+          $('section h2 a').on('click', function() {
+            var idx = +$(this).attr('href').match(/\d+/g)[0];
+            current_chr_num = idx;
+            draw_chr_graph(current_chr_num);
           });
+
+          $(window).on('drawChr', function(self, chr_num) {
+            chr_num = chr_num-1;
+
+            current_chr_num = chr_num;
+            draw_chr_graph(current_chr_num);
+          });
+
+          /*
+          $( window ).on( 'debouncedresize', function() {
+            draw_chr_graph(current_chr_num);
+          });
+          */
+
       });
     </script>
   </body>

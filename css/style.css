@@ -1,14 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
-@font-face {
-  font-family: 'fontawesome';
-  src:url('../fonts/fontawesome.eot');
-  src:url('../fonts/fontawesome.eot?#iefix') format('embedded-opentype'),
-    url('../fonts/fontawesome.svg#fontawesome') format('svg'),
-    url('../fonts/fontawesome.woff') format('woff'),
-    url('../fonts/fontawesome.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700);
 
 *, *:after, *:before {
   -webkit-box-sizing: border-box;
@@ -20,13 +10,17 @@ body, html {
   padding: 0;
   margin: 0;
 }
+::-webkit-scrollbar {
+  display: none;
+}
 
 /* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
 .clearfix:before, .clearfix:after { content: " "; display: table; }
 .clearfix:after { clear: both; }
 
 body {
-  font-family: 'Lato', Calibri, Arial, sans-serif;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
   color: #fff;
 }
 
@@ -42,18 +36,20 @@ a:hover {
 /* Set all parents to full height */
 html, body,
 .container,
-.cbp-fbscroller {
+.scroller {
   height: 100%;
 }
 
-.cbp-fbscroller section {
-  height: 60%;
+.scroller section {
+  height: 500px;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 
 /* The nav is fixed on the left side  and we center it by translating it 50%
 (we don't know it's height so we can't use the negative margin trick) */
-.cbp-fbscroller > nav {
+.scroller > nav {
   position: fixed;
   z-index: 9999;
   left: 10px;
@@ -65,7 +61,7 @@ html, body,
   transform: translateY(-50%);
 }
 
-.cbp-fbscroller > nav a {
+.scroller > nav a {
   display: block;
   position: relative;
   z-index: 9999;
@@ -75,22 +71,120 @@ html, body,
   outline: none;
   margin: 12px 0;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 1px solid #0B2C3C;
 }
 
-.no-touch .cbp-fbscroller > nav a:hover {
+.no-touch .scroller > nav a:hover {
   background: rgba(255,255,255,0.6);
 }
 
-.cbp-fbscroller > nav a.cbp-fbcurrent {
-  background: #fff;
+.scroller > nav a.active {
+  background: #FF6666;
 }
 
-.container-even {
-  background-color: #DADFE1;
+#home {
+  background-color: #0B2C3C;
+  background-color: white;
+  position: relative;
 }
 
-.container-odd {
-  background-color: #C5E3FA;
+#home img {
+  display: block;
+  margin: 0 auto;
+  width: 280px;
+}
+
+#home h1 {
+  font-size: 10em;
+  color: rgba(11, 44, 60, .75);
+  font-weight: 100;
+  position: absolute;
+
+  margin-top: 140px;
+  text-align: center;
+  width: 100%;
+}
+
+#home h3 a {
+  position: absolute;
+  text-decoration: none;
+  margin: 0px;
+  right: 6px;
+  bottom: 6px;
+  color: #FF6666;
+
+  font-size: 2em;
+  font-weight: 300;
+}
+
+#about { position: relative; padding-top: 120px; }
+#about p {
+  width: 100%;
+  text-align: center;
+  color: #444444;
+  font-size: 2em;
+  padding: 20px 140px 20px 140px;
+  font-weight: 300;
+}
+#about p a {
+  color: #FF6666;
+}
+
+section h2 {
+  font-size: 4em;
+  font-weight: 100;
+  position: absolute;
+
+  margin-top: 200px;
+  text-align: center;
+  width: 100%;
+}
+
+section a {
+  text-decoration: none;
+}
+
+section i {
+  position: absolute;
+  color: #999;
+  width: 100%;
+  text-align: center;
+  margin-top: 120px;
+  padding: 0px;
+}
+
+.even { background-color: #F0F5F7; }
+.even h2 a { color: #444444; }
+.odd { background-color: #444444; }
+.odd h2 a { color: #F0F5F7; }
+
+/* SVG */
+svg {
+  font-size: 10px;
+  font-weight: 100;
+}
+
+.area {
+  fill: steelblue;
+  clip-path: url(#clip);
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.axis path {
+  fill: none;
+  stroke: #777;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: rgba(11, 44, 60, .5);
+  fill: rgba(255,255,255,0.25);
+  shape-rendering: crispEdges;
 }
 

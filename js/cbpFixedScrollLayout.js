@@ -12,16 +12,15 @@ var cbpFixedScrollLayout = (function() {
 
   // cache and initialize some values
   var config = {
-   // the cbp-fbscroller's sections
-    $sections : $( '#cbp-fbscroller > section' ),
+    $sections : $( '#scroller > section' ),
     // the navigation links
-    $navlinks : $( '#cbp-fbscroller > nav:first > a' ),
+    $navlinks : $( '#scroller > nav:first > a' ),
     // index of current link / section
     currentLink : 0,
     // the body element
     $body : $( 'html, body' ),
     // the body animation speed
-    animspeed : 1000,
+    animspeed : 500,
     // the body animation easing (jquery easing)
     animeasing : 'easeInOutExpo'
   };
@@ -55,9 +54,9 @@ var cbpFixedScrollLayout = (function() {
 
   // update the current navigation link
   function changeNav( $section ) {
-    config.$navlinks.eq( config.currentLink ).removeClass( 'cbp-fbcurrent' );
+    config.$navlinks.eq( config.currentLink ).removeClass( 'active' );
     config.currentLink = $section.index( 'section' );
-    config.$navlinks.eq( config.currentLink ).addClass( 'cbp-fbcurrent' );
+    config.$navlinks.eq( config.currentLink ).addClass( 'active' );
   }
 
   // function to scroll / animate the body
