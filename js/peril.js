@@ -101,7 +101,7 @@ var draw_chr_graph = function(chr_num) {
         'transform': 'translate(' + margin2.left + ',' + margin2.top + ')'
       });
 
-  y.domain([0, 100]);
+  y.domain([0, 297]);
   y2.domain(y.domain());
 
   var rect_obj = {
@@ -124,7 +124,7 @@ var draw_chr_graph = function(chr_num) {
   fetch_data(chromosome_idx, pagination_idx);
 
   function update_data(chromosome_idx, pagination_idx) {
-    dsv('data/chr_'+ chromosome_idx +'_'+ pagination_idx +'.txt', type, function(error, data) {
+    dsv('data/chr'+ chromosome_idx +'_'+ pagination_idx +'.tsv', type, function(error, data) {
 
       layers = stack( d3.range(3).map(function(i) {
         return data.map(function(d, idx) {
@@ -145,13 +145,19 @@ var draw_chr_graph = function(chr_num) {
           .duration(2500)
             .attr(rect_obj);
 
+      context.data(data)
+        .transition()
+          .duration(2500)
+            .attr('d', area2);
+
+
     });
 
   }
 
   function fetch_data(chromosome_idx, pagination_idx) {
 
-    dsv('data/chr'+ chromosome_idx +'_'+ pagination_idx +'.txt', type, function(error, data) {
+    dsv('data/chr'+ chromosome_idx +'_'+ pagination_idx +'.tsv', type, function(error, data) {
 
       layers = stack( d3.range(3).map(function(i) {
         return data.map(function(d, idx) {
@@ -218,10 +224,10 @@ var draw_chr_graph = function(chr_num) {
 
   function type(d) {
     var obj = Object();
-    obj[0] = +d['a']
-    obj[1] = +d['b']
-    obj[2] = +d['c']
-    obj['p'] = +d['p']
+    obj[0] = +d['A']
+    obj[1] = +d['B']
+    obj[2] = +d['C']
+    obj['p'] = +d['P']
     obj['sum'] = obj[0]+obj[1]+obj[2]
     return obj;
   }
