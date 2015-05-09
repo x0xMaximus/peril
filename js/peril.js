@@ -111,20 +111,20 @@ var draw_chr_graph = function(chr_num) {
     'height': section_height
   }
 
-  var genome_idx = 'x';
+  var chromosome_idx = chr_num;
   var pagination_idx = 0;
   $('section i.fa-chevron-left').on('click', function() {
     pagination_idx--;
-    update_data(genome_idx, pagination_idx);
+    update_data(chromosome_idx, pagination_idx);
   });
   $('section i.fa-chevron-right').on('click', function() {
     pagination_idx++;
-    update_data(genome_idx, pagination_idx);
+    update_data(chromosome_idx, pagination_idx);
   });
-  fetch_data(genome_idx, pagination_idx);
+  fetch_data(chromosome_idx, pagination_idx);
 
-  function update_data(genome_idx, pagination_idx) {
-    dsv('data/chr_'+ genome_idx +'_'+ pagination_idx +'.txt', type, function(error, data) {
+  function update_data(chromosome_idx, pagination_idx) {
+    dsv('data/chr_'+ chromosome_idx +'_'+ pagination_idx +'.txt', type, function(error, data) {
 
       layers = stack( d3.range(3).map(function(i) {
         return data.map(function(d, idx) {
@@ -149,9 +149,9 @@ var draw_chr_graph = function(chr_num) {
 
   }
 
-  function fetch_data(genome_idx, pagination_idx) {
+  function fetch_data(chromosome_idx, pagination_idx) {
 
-    dsv('data/chr_'+ genome_idx +'_'+ pagination_idx +'.txt', type, function(error, data) {
+    dsv('data/chr'+ chromosome_idx +'_'+ pagination_idx +'.txt', type, function(error, data) {
 
       layers = stack( d3.range(3).map(function(i) {
         return data.map(function(d, idx) {
@@ -178,7 +178,7 @@ var draw_chr_graph = function(chr_num) {
       rectangle.attr(rect_obj)
       .style('fill', function(d) { return bg_color(d['sum']); })
       .on('dblclick', function(d) {
-        var win = window.open('http://maxnanis.com', '_blank');
+        var win = window.open('http://www.rcsb.org/pdb/chromosome.do?v=hg37&chromosome=chr'+ chromosome_idx +'&pos='+ d['p'], '_blank');
         win.focus();
       });
 
@@ -218,9 +218,10 @@ var draw_chr_graph = function(chr_num) {
 
   function type(d) {
     var obj = Object();
-    obj[0] = +d['one']
-    obj[1] = +d['two']
-    obj[2] = +d['three']
+    obj[0] = +d['a']
+    obj[1] = +d['b']
+    obj[2] = +d['c']
+    obj['p'] = +d['p']
     obj['sum'] = obj[0]+obj[1]+obj[2]
     return obj;
   }
