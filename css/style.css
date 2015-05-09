@@ -44,6 +44,7 @@ html, body,
   height: 500px;
   overflow-x: scroll;
   overflow-y: hidden;
+  position: relative;
 }
 
 
@@ -74,7 +75,7 @@ html, body,
   border: 1px solid #0B2C3C;
 }
 
-.no-touch .scroller > nav a:hover {
+.scroller > nav a:hover {
   background: rgba(255,255,255,0.6);
 }
 
@@ -117,7 +118,7 @@ html, body,
   font-weight: 300;
 }
 
-#about { position: relative; padding-top: 120px; }
+#about { padding-top: 120px; }
 #about p {
   width: 100%;
   text-align: center;
@@ -146,11 +147,35 @@ section a {
 
 section i {
   position: absolute;
+  padding: 0px;
+}
+
+section i.fa-circle-o-notch {
   color: #999;
   width: 100%;
   text-align: center;
   margin-top: 120px;
-  padding: 0px;
+}
+
+section i.fa-chevron-left {
+  top: 6px;
+  left: 36px;
+  color: #fff;
+  cursor: pointer;
+}
+
+section i.fa-chevron-right {
+  top: 6px;
+  right: 6px;
+  color: #fff;
+  cursor: pointer;
+}
+
+section i.fa-download {
+  bottom: 6px;
+  right: 6px;
+  color: #444444;
+  cursor: pointer;
 }
 
 .even { background-color: #F0F5F7; }

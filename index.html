@@ -74,6 +74,7 @@
         <section id="about" class='even'>
           <p>Peril was developed at General Research Lab by <a href='https://twitter.com/x0xMaximus' target='_blank'>Max Nanis</a> & <a href='http://sulab.org/the-team/louis-gioia/' target='_blank'>Louis Gioia</a>.</p>
           <p><a href='https://github.com/GRL/peril' target='_blank'>Peril is open source.</a></p>
+          <i id='download' class='fa fa-download fa-5x'></i>
         </section>
       </div>
     </div>
@@ -81,6 +82,7 @@
     <script src="//d3js.org/d3.v3.min.js"></script>
     <script src="//underscorejs.org/underscore-min.js"></script>
     <script src="js/jquery.animate-colors-min.js"></script>
+    <script src="js/webtoolkit.base64.js"></script>
     <script src="js/peril.js"></script>
 
     <script src="js/jquery.easing.min.js"></script>
@@ -112,6 +114,18 @@
           */
 
       });
+
+      $('#download').on('click', function() {
+
+        $('svg').each(function(i, v) {
+
+          $(this).attr({ version: '1.1' , xmlns:"http://www.w3.org/2000/svg"});
+          var b64 = Base64.encode( $(this).html() );
+          window.open('data:image/svg+xml;base64,\n'+b64);
+
+        });
+      });
+
     </script>
   </body>
 </html>

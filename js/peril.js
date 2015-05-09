@@ -13,12 +13,12 @@ $(document).ready(function() {
 
 var prep_section = function($section) {
   $section.css({backgroundColor: '#fff'});
-  $section.html('<i class="fa fa-circle-o-notch fa-spin fa-5x"></i>')
+  $section.html('<i class=\'fa fa-circle-o-notch fa-spin fa-5x\'></i><i class=\'fa fa-chevron-left fa-2x\'></i><i class=\'fa fa-chevron-right fa-2x\'></i>');
 }
 
 var show_section = function($section) {
   $section.find('svg').fadeIn('slow');
-  $section.find('i').fadeOut(function() {
+  $section.find('i.fa-circle-o-notch').fadeOut(function() {
     $(this).remove();
   });
 }
@@ -31,11 +31,12 @@ var draw_chr_graph = function(chr_num) {
   var section_height = 500,
       margin = {top: 0, right: 0, bottom: 120, left: 30},
       margin2 = {top: 400, right: 0, bottom: 20, left: 30},
-      width = $('body').width() - margin.left - margin.right,
+      width = $section.width() - margin.left - margin.right,
       height = section_height - margin.top - margin.bottom,
       height2 = section_height - margin2.top - margin2.bottom;
 
   var x = d3.scale.linear().range([0, width]),
+      xrange = d3.scale.ordinal().rangeBands([0, width], 10),
       x2 = d3.scale.linear().range([0, width]),
       y = d3.scale.linear().range([height, 0]),
       y2 = d3.scale.linear().range([height2, 0]);
@@ -53,7 +54,7 @@ var draw_chr_graph = function(chr_num) {
       .y1(function(d) { return y(d.y0 + d.y); });
 
   var area2 = d3.svg.area()
-      .interpolate('linear')
+      .interpolate('monotone')
       .x(function(d, idx) { return x2(idx); })
       .y0(height2)
       .y1(function(d) { return y2(d['sum']); });
@@ -80,13 +81,12 @@ var draw_chr_graph = function(chr_num) {
         'height': height
       });
 
-  /* The dynamic background
+  /* The dynamic background */
   var background = svg.append('g')
       .attr({
         'class': 'background',
         'transform': 'translate(' + margin.left + ',' + (margin.top - margin2.bottom) + ')'
       });
-  */
 
   /* The main view */
   var focus = svg.append('g')
@@ -102,76 +102,133 @@ var draw_chr_graph = function(chr_num) {
         'transform': 'translate(' + margin2.left + ',' + margin2.top + ')'
       });
 
-  y.domain([0, 297]);
+  y.domain([0, 100]);
   y2.domain(y.domain());
 
-  dsv('data/chr20_at50mil_formatted.tsv', type, function(error, data) {
+  var rect_obj = {
+    'x': function(d, idx) {
+      console.log(idx);
+      return x(idx);
+    },
+    'y': 0,
+    'width': '1px',
+    'height': section_height
+  }
 
-    layers = stack( d3.range(3).map(function(i) {
-      return data.map(function(d, idx) {
-        return {'x': idx, 'y': d[i]};
+  var genome_idx = 'x';
+  var pagination_idx = 0;
+  $('section i.fa-chevron-left').on('click', function() {
+    pagination_idx--;
+    update_data(genome_idx, pagination_idx);
+  });
+  $('section i.fa-chevron-right').on('click', function() {
+    pagination_idx++;
+    update_data(genome_idx, pagination_idx);
+  });
+  fetch_data(genome_idx, pagination_idx);
+
+  function update_data(genome_idx, pagination_idx) {
+    dsv('data/chr_'+ genome_idx +'_'+ pagination_idx +'.txt', type, function(error, data) {
+
+      layers = stack( d3.range(3).map(function(i) {
+        return data.map(function(d, idx) {
+          return {'x': idx, 'y': d[i]};
+        });
+      }) );
+
+      x.domain([0, data.length]);
+      xrange.domain(x.domain());
+      x2.domain(x.domain());
+
+      stacked.data(layers)
+        .transition()
+          .duration(2500)
+            .attr('d', area);
+
+      rectangle.data(data)
+        .transition()
+          .duration(10000)
+            .attr(rect_obj);
+
+    });
+
+  }
+
+  function fetch_data(genome_idx, pagination_idx) {
+
+    dsv('data/chr_'+ genome_idx +'_'+ pagination_idx +'.txt', type, function(error, data) {
+
+      layers = stack( d3.range(3).map(function(i) {
+        return data.map(function(d, idx) {
+          return {'x': idx, 'y': d[i]};
+        });
+      }) );
+
+      x.domain([0, data.length]);
+      xrange.domain(x.domain());
+      x2.domain(x.domain());
+
+      /* Chr SNP Focus Viewport */
+      stacked = focus.selectAll('path').data(layers)
+      stacked.exit().remove();
+      stacked.enter().append('path');
+      stacked
+        .attr('d', area)
+        .style('fill', function(d, idx) { return color(idx); });
+
+      /* Chr SNP Focus Viewport */
+      rectangle = background.selectAll('rect').data(data);
+      rectangle.exit().remove();
+      rectangle.enter().append('rect');
+
+      rectangle.attr(rect_obj)
+      .style('fill', function(d) { return bg_color(d['sum']); })
+      .on('dblclick', function(d) {
+        var win = window.open('http://maxnanis.com', '_blank');
+        win.focus();
       });
-    }) );
 
-    x.domain([0, data.length]);
-    x2.domain(x.domain());
-
-    /* Chr SNP Focus Viewport */
-    stacked = focus.selectAll('path').data(layers)
-    stacked.exit().remove();
-    stacked.enter().append('path');
-    stacked
-      .attr('d', area)
-      .style('fill', function(d, idx) { return color(idx); });
-
-    /* Chr SNP Focus Viewport
-    rectangle = background.selectAll('rect').data(data);
-    rectangle.exit().remove();
-    rectangle.enter().append('rect');
-    rectangle.attr({
-      'x': function(d, idx) { return x(idx); },
-      'y': 0,
-      'width': '1px',
-      'height': section_height
-    }).style('fill', function(d) { return bg_color(d['sum']); });
-    */
-
-    /* Area Legend */
-    context.append('path')
-      .datum(data)
-      .attr({
-        'class': 'area',
-        'd': area2
-      });
-
-    context.append('g')
-      .attr({
-        'class': 'x axis',
-        'transform': 'translate(0,' + height2 + ')'
-      }).call(xAxis);
-
-    context.append('g')
-      .attr('class', 'x brush')
-      .call(brush)
-      .selectAll('rect')
+      /* Area Legend */
+      context.append('path')
+        .datum(data)
         .attr({
-          'y': -6,
-          'height': height2 + 7
+          'class': 'area',
+          'd': area2
         });
 
-    show_section($section);
-  });
+      context.append('g')
+        .attr({
+          'class': 'x axis',
+          'transform': 'translate(0,' + height2 + ')'
+        }).call(xAxis);
+
+      context.append('g')
+        .attr('class', 'x brush')
+        .call(brush)
+        .selectAll('rect')
+          .attr({
+            'y': -6,
+            'height': height2 + 7
+          });
+
+      show_section($section);
+    });
+
+  }
 
   function brushed() {
     x.domain(brush.empty() ? x2.domain() : brush.extent());
+    xrange.domain(brush.empty() ? x2.domain() : brush.extent());
     stacked.attr('d', area);
+    console.log(rectangle);
+    rectangle.call(xAxis);
   }
 
   function type(d) {
     var obj = Object();
-    obj[0] = +d.phred_1
-    obj[1] = +d.phred_2
-    obj[2] = +d.phred_3
+    obj[0] = +d['one']
+    obj[1] = +d['two']
+    obj[2] = +d['three']
     obj['sum'] = obj[0]+obj[1]+obj[2]
     return obj;
   }
