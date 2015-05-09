@@ -1,5 +1,6 @@
 # Peril
-Genome-wide SNP Frequency Visualization // 3rd BD2K Hackathon
+
+[Predicted Peril](http://grlabs.co/peril/) is a website. // 3rd BD2K Hackathon
 
 
 ![](http://www.puff.me.uk/ss/CqQaJ1Hkqn7Eo.png)
