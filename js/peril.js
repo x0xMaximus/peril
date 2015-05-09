@@ -36,15 +36,14 @@ var draw_chr_graph = function(chr_num) {
       height2 = section_height - margin2.top - margin2.bottom;
 
   var x = d3.scale.linear().range([0, width]),
-      xrange = d3.scale.ordinal().rangeBands([0, width], 10),
       x2 = d3.scale.linear().range([0, width]),
       y = d3.scale.linear().range([height, 0]),
       y2 = d3.scale.linear().range([height2, 0]);
 
   var xAxis = d3.svg.axis().scale(x2).orient('bottom');
   var brush = d3.svg.brush()
-      .x(x2)
-      .on('brush', brushed);
+              .x(x2)
+                .on('brush', brushed);
   var stack = d3.layout.stack().offset('silhouette');
 
   /* Layouts */
@@ -106,12 +105,9 @@ var draw_chr_graph = function(chr_num) {
   y2.domain(y.domain());
 
   var rect_obj = {
-    'x': function(d, idx) {
-      console.log(idx);
-      return x(idx);
-    },
+    'x': function(d, idx) { return x(idx) },
     'y': 0,
-    'width': '1px',
+    'width': width/2,
     'height': section_height
   }
 
@@ -137,7 +133,6 @@ var draw_chr_graph = function(chr_num) {
       }) );
 
       x.domain([0, data.length]);
-      xrange.domain(x.domain());
       x2.domain(x.domain());
 
       stacked.data(layers)
@@ -147,7 +142,7 @@ var draw_chr_graph = function(chr_num) {
 
       rectangle.data(data)
         .transition()
-          .duration(10000)
+          .duration(2500)
             .attr(rect_obj);
 
     });
@@ -165,7 +160,6 @@ var draw_chr_graph = function(chr_num) {
       }) );
 
       x.domain([0, data.length]);
-      xrange.domain(x.domain());
       x2.domain(x.domain());
 
       /* Chr SNP Focus Viewport */
@@ -218,10 +212,8 @@ var draw_chr_graph = function(chr_num) {
 
   function brushed() {
     x.domain(brush.empty() ? x2.domain() : brush.extent());
-    xrange.domain(brush.empty() ? x2.domain() : brush.extent());
     stacked.attr('d', area);
-    console.log(rectangle);
-    rectangle.call(xAxis);
+    rectangle.attr(rect_obj);
   }
 
   function type(d) {
